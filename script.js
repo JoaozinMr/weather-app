@@ -8,8 +8,6 @@ search.addEventListener('click', () => {
   const APIKey = 'b16b416790f0d8fb79d249f76d94d5ce'
   const city = document.querySelector('.search-box input').value
 
-  console.log(city)
-
   if (city === '') return
 
   fetch(
@@ -23,10 +21,9 @@ search.addEventListener('click', () => {
         weatherDetails.style.display = 'none'
         error404.style.display = 'block'
         error404.classList.add('fadeIn')
-        console.log(json.cod)
         return
       }
-      console.log(json)
+
       error404.style.display = 'none'
       error404.classList.remove('fadeIn')
 

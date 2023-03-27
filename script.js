@@ -17,7 +17,7 @@ search.addEventListener('click', () => {
   )
     .then(response => response.json())
     .then(json => {
-      if ((json.cod = '404')) {
+      if (json.cod == '404') {
         container.style.height = '400px'
         weatherBox.style.display = 'none'
         weatherDetails.style.display = 'none'
@@ -26,13 +26,14 @@ search.addEventListener('click', () => {
         console.log(json.cod)
         return
       }
+      console.log(json)
       error404.style.display = 'none'
       error404.classList.remove('fadeIn')
 
       const image = document.querySelector('.weather-box img')
       const temperature = document.querySelector('.weather-box .temperature')
       const description = document.querySelector('.weather-box .description')
-      const humidity = document.querySelector('.weather-details .humidity')
+      const humidity = document.querySelector('.weather-details .humidity span')
       const wind = document.querySelector('.weather-details .wind span')
 
       switch (json.weather[0].main) {
@@ -55,9 +56,12 @@ search.addEventListener('click', () => {
           image.src = ''
       }
 
-      temperature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`
+      temperature.innerHTML = `${parseInt(
+        json.main.temp - 273,
+        15
+      )}<span>°C</span>`
       description.innerHTML = `${json.weather[0].description}`
-      humidity.innerHTML = `${json.main.humidity}%`
+      humidity.innerHTML = `${parseInt(json.main.humidity)}%`
       wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`
 
       weatherBox.style.display = ''

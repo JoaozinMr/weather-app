@@ -33,6 +33,7 @@ search.addEventListener('click', () => {
       const humidity = document.querySelector('.weather-details .humidity span')
       const wind = document.querySelector('.weather-details .wind span')
 
+      console.log(json)
       switch (json.weather[0].main) {
         case 'Clear':
           image.src = 'images/clear.png'
@@ -54,8 +55,7 @@ search.addEventListener('click', () => {
       }
 
       temperature.innerHTML = `${parseInt(
-        json.main.temp - 273,
-        15
+        json.main.temp - 273.15
       )}<span>°C</span>`
       description.innerHTML = `${json.weather[0].description}`
       humidity.innerHTML = `${parseInt(json.main.humidity)}%`
